@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MIX DARK DEV</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            orbitron: ['Orbitron','sans-serif'],
+            mono:     ['Share Tech Mono','monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- variables CSS base -->
+  <style>
+    :root {
+      --neon-cyan: #00f5ff;
+      --neon-purple: #bf5fff;
+      --neon-pink: #ff2d78;
+      --dark-base: #020210;
+    }
+  </style>
+</head>
+
+<body class="bg-[#020210] min-h-screen flex items-center justify-center overflow-hidden relative select-none">
+
+  <!-- Canvas de fondo -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Nebulosas CSS -->
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
+  <div class="nebula nebula-3"></div>
+
+  <!-- Meteoros CSS -->
+  <div class="meteors-wrap">
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+  </div>
+
+  <!-- Planetas decorativos -->
+  <div class="bg-planet bg-planet-1"></div>
+  <div class="bg-planet bg-planet-2"></div>
+  <div class="bg-planet bg-planet-3"></div>
+  <div class="bg-planet bg-planet-4"></div>
+  <div class="bg-planet bg-planet-5"></div>
+  <div class="bg-planet bg-planet-6"></div>
+
+  <!-- Grid HUD -->
+  <div class="hud-grid"></div>
+
+  <!-- Rayo de escaneo -->
+  <div class="scan-beam"></div>
+
+  <!-- Esquinas HUD decorativas -->
+  <div class="hud-corner hud-tl"></div>
+  <div class="hud-corner hud-tr"></div>
+  <div class="hud-corner hud-bl"></div>
+  <div class="hud-corner hud-br"></div>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       TARJETA PRINCIPAL
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <main class="relative z-10 w-full max-w-lg mx-4">
+    <div class="card" id="mainCard">
+
+      <!-- Bordes animados -->
+      <div class="card-border-top"></div>
+      <div class="card-border-bottom"></div>
+
+      <!-- Info HUD top -->
+      <div class="flex justify-between items-center mb-5">
+        <span class="hud-label">SYS://PROFILE_CARD</span>
+        <div class="flex items-center gap-2">
+          <span class="status-dot"></span>
+          <span class="hud-label">ONLINE</span>
+        </div>
+      </div>
+
+      <!-- Avatar / Ã­cono central -->
+      <div class="flex justify-center mb-5">
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            <!-- Globo terráqueo SVG -->
+          <svg viewBox="0 0 60 60" class="w-12 h-12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Anillo exterior giratorio -->
+            <circle cx="30" cy="30" r="27" stroke="#00f5ff" stroke-width="1" stroke-dasharray="5 3" class="avatar-ring-spin" opacity=".7"/>
+            <!-- Esfera base -->
+            <circle cx="30" cy="30" r="20" fill="rgba(0,245,255,0.06)" stroke="#00f5ff" stroke-width="1.2"/>
+            <!-- Meridianos verticales -->
+            <ellipse cx="30" cy="30" rx="10" ry="20" stroke="rgba(0,245,255,0.45)" stroke-width=".9" fill="none"/>
+            <ellipse cx="30" cy="30" rx="20" ry="20" stroke="rgba(0,245,255,0.2)" stroke-width=".9" fill="none"/>
+            <line x1="30" y1="10" x2="30" y2="50" stroke="rgba(0,245,255,0.25)" stroke-width=".7"/>
+            <!-- Paralelos horizontales -->
+            <ellipse cx="30" cy="22" rx="16.7" ry="4" stroke="rgba(0,245,255,0.35)" stroke-width=".8" fill="none"/>
+            <ellipse cx="30" cy="30" rx="20" ry="5.2" stroke="rgba(0,245,255,0.5)" stroke-width="1" fill="none"/>
+            <ellipse cx="30" cy="38" rx="16.7" ry="4" stroke="rgba(0,245,255,0.35)" stroke-width=".8" fill="none"/>
+            <!-- Continentes simplificados -->
+            <path d="M22 24 Q25 21 28 23 Q30 22 32 24 Q35 23 37 25 Q36 28 33 27 Q30 29 27 27 Q24 28 22 26 Z"
+                  fill="rgba(0,245,255,0.18)" stroke="rgba(0,245,255,0.5)" stroke-width=".5"/>
+            <path d="M24 33 Q26 31 29 32 Q31 31 33 33 Q32 36 30 35 Q27 36 24 35 Z"
+                  fill="rgba(191,95,255,0.2)" stroke="rgba(191,95,255,0.5)" stroke-width=".5"/>
+            <path d="M34 28 Q36 27 38 29 Q37 31 35 30 Z"
+                  fill="rgba(0,245,255,0.15)" stroke="rgba(0,245,255,0.4)" stroke-width=".4"/>
+            <!-- Punto de polo norte -->
+            <circle cx="30" cy="10" r="1.5" fill="#00f5ff" opacity=".8"/>
+            <circle cx="30" cy="50" r="1.5" fill="#bf5fff" opacity=".8"/>
+            <!-- Brillo -->
+            <ellipse cx="24" cy="22" rx="4" ry="3" fill="rgba(255,255,255,0.07)" transform="rotate(-20,24,22)"/>
+          </svg>
+          </div>
+          <div class="avatar-orbit orbit-a"></div>
+          <div class="avatar-orbit orbit-b"></div>
+        </div>
+      </div>
+
+      <!-- Título con glitch -->
+      <div class="text-center mb-1">
+        <h1 class="main-title font-orbitron font-black" data-text="MIX DARK">
+          MIX DARK
+        </h1>
+        <h1 class="main-title font-orbitron font-black" data-text="DEV">
+          DEV
+        </h1>
+        <div class="title-underbar"></div>
+      </div>
+
+      <!-- Tags de rol -->
+      <div class="flex justify-center flex-wrap gap-2 mb-5">
+        <span class="hud-tag cyan">âŸ¨ DEVELOPER âŸ©</span>
+        <span class="hud-tag purple">âŸ¨ CREATOR âŸ©</span>
+        <span class="hud-tag pink">âŸ¨ BUILDER âŸ©</span>
+      </div>
+
+      <!-- Divisor -->
+      <div class="hud-divider mb-5">
+        <span class="divider-text">NETWORK_LINKS</span>
+      </div>
+
+      <!-- â”€â”€ Redes sociales â”€â”€ -->
+      <div class="flex flex-col gap-3">
+
+        <!-- GitHub -->
+        <a href="https://github.com/MixDark" target="_blank" rel="noopener" class="social-card github-card">
+          <div class="social-icon-wrap github-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55
+                0-.27-.01-.98-.01-1.92-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.27-1.68-1.27-1.68
+                -1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.33.95
+                .1-.74.4-1.24.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.08
+                -.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17A11 11 0 0 1 12 6.8c.97 0 1.95.13
+                2.86.38 2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83
+                1.18 3.08 0 4.41-2.68 5.39-5.24 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01
+                3.17 0 .3.21.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+            </svg>
+          </div>
+          <div class="social-text">
+            <span class="social-name">GitHub</span>
+            <span class="social-url">github.com/MixDark</span>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="social-arrow w-4 h-4 ml-auto opacity-40">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          <div class="card-sweep"></div>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://youtube.com/@mixdarkdev" target="_blank" rel="noopener" class="social-card youtube-card">
+          <div class="social-icon-wrap youtube-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501
+                s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805
+                31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502
+                9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0
+                .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+            </svg>
+          </div>
+          <div class="social-text">
+            <span class="social-name">YouTube</span>
+            <span class="social-url">youtube.com/@mixdarkdev</span>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="social-arrow w-4 h-4 ml-auto opacity-40">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          <div class="card-sweep"></div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/esteban12" target="_blank" rel="noopener" class="social-card linkedin-card">
+          <div class="social-icon-wrap linkedin-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037
+                -1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046
+                c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337
+                7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782
+                13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542
+                C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729
+                C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </div>
+          <div class="social-text">
+            <span class="social-name">LinkedIn</span>
+            <span class="social-url">linkedin.com/in/esteban12</span>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="social-arrow w-4 h-4 ml-auto opacity-40">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          <div class="card-sweep"></div>
+        </a>
+
+      </div><!-- /socials -->
+
+      <!-- Footer HUD -->
+      <div class="flex justify-between items-center mt-5">
+        <span class="text-[9px] tracking-[.25em] text-white/20 font-['Share_Tech_Mono']">Â© 2026 MIX DARK DEV</span>
+        <div class="flex gap-1.5">
+          <div class="w-1.5 h-1.5 rounded-full bg-[var(--neon-cyan)] animate-pulse"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-[var(--neon-purple)] animate-pulse" style="animation-delay:.3s"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-[var(--neon-pink)] animate-pulse" style="animation-delay:.6s"></div>
+        </div>
+      </div>
+
+    </div><!-- /card -->
+  </main>
+
+  <!-- Botón música -->
+  <!--
+    INSTRUCCIONES DE MÚSICA:
+    1. Coloca tu archivo MP3 en la misma carpeta con el nombre: music.mp3
+    2. El navegador intentará reproducirlo automáticamente al abrir la página.
+    3. Si el navegador bloquea el autoplay (Chrome/Edge lo hacen por política),
+       el botón pulsará para invitar al usuario a activarlo con un clic.
+  -->
+  <audio id="bgAudio" src="I Believe (Extended Mix).mp3" loop preload="auto"></audio>
+
+  <button id="musicBtn" class="music-btn paused" aria-label="Toggle música">
+    <div class="eq-bars" id="eqBars">
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+    </div>
+  </button>
+  <div class="music-label" id="musicLabel">♫ MÚSICA</div>
+
+  <!-- Contador HUD decorativo -->
+  <div class="hud-counter" id="hudCounter">SYS:0000</div>
+
+  <!-- Overlay scanlines -->
+  <div class="scanlines"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
